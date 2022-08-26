@@ -1,47 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Mamos test </title>
-    </head>
-    <body>
-        <h1>nuss</h1>
-        <h2>knacker</h2>
-        <p>Halli-Hallo!</p>
-        <p>Es funktioniert!</p>
-        <em>SUS</em>
-        <br>
-        <strong>AMONG US</strong>
-        <br>
-        <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0">SUSY</a>
-        <ul><li>eins</li><li>zwei</li></ul>
-        <nav></nav>
-        <article>131ref</article>
-        <section>und so</section>
-        <header>Jack</header>
-        <main>Zeug</main>
-        <aside>Ordner</aside>
-        <footer>oafojn</footer>
-        <time>11.9.****</time>
-        <h1>Und Jetzt langeweilige Sachen</h1>
-    </body>
-        
-        <body>
-            <header>
-                <h1><a href="/">Django Girls Blog</a></h1>
-            </header>
-    
-            <article>
-                <time>published: 14.06.2014, 12:14</time>
-                <h2><a href="">My first post</a></h2>
-                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            </article>
-    
-            <article>
-                <time>published: 14.06.2014, 12:14</time>
-                <h2><a href="">My second post</a></h2>
-                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-            </article>
-        </body>
+           
+           {% extends 'blog/base.html' %}
 
-    
-</html>
+                {% block content %}
+                  {% for post in posts %}
+                        <article class="post">
+                            <time class="date">
+                                {{ post.published_date }}
+                            </time>
+                            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </article>
+                    {% endfor %}
+                {% endblock %}
